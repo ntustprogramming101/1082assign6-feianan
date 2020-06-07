@@ -1,6 +1,36 @@
-class Clock {
+class Clock extends Item{
 	// Requirement #2: Complete Clock Class
-
+  PImage img;
+  
+  Clock(float x, float y){
+    super(x, y);
+    img = clock;
+    isAlive = true;
+  }
+  
+  void display(){
+    if(isAlive){
+      image(img, x, y);
+    }
+  }
+  
+  void addTime(float seconds){
+    gameTimer += round(seconds * 60);
+  }
+  
+  void checkCollision(){
+    if( x + SOIL_SIZE > player.x    // r1 right edge past r2 left
+        && x < player.x + SOIL_SIZE    // r1 left edge past r2 right
+        && y + SOIL_SIZE > player.y    // r1 top edge past r2 bottom
+        && y < player.y + SOIL_SIZE) { // r1 bottom edge past r2 top
+        addTime(15);
+        isAlive = false;
+        player.health ++;
+        x = y = -1000;
+     }else{
+       isAlive = true;      
+    }
+  }
 	/*
 	Code for Reference:
 
