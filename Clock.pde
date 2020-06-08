@@ -25,7 +25,6 @@ class Clock extends Item{
         && y < player.y + SOIL_SIZE) { // r1 bottom edge past r2 top
         addTime(15);
         isAlive = false;
-        player.health ++;
         x = y = -1000;
      }else{
        isAlive = true;      
